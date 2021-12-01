@@ -1,24 +1,33 @@
-import java.util.List;
+import exceptions.ClienteAlreadyHasAccountException;
+import exceptions.ContaNotFoundException;
+import exceptions.SenhaNotMatchedException;
 
-public class Banco {
+import javax.security.auth.login.AccountNotFoundException;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-	private String nome;
-	private List<Conta> contas;
+/**
+ * @author Venilton FalvoJr
+ * @see Conta
+ * @see Card
+ */
+public class Banco extends AbstractBanco implements IBanco {
 
-	public String getNome() {
-		return nome;
-	}
+    public Banco(String nome) {
+        super(nome);
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @Override
+    protected void template_get_new_account(Cliente cliente) {
+        return;
+    }
 
-	public List<Conta> getContas() {
-		return contas;
-	}
+    public boolean verificarSenha(Cliente cliente, Integer senha) throws SenhaNotMatchedException {
+        if (!(cliente.getSenha().equals(senha))) {
+            throw new SenhaNotMatchedException();
+        }
 
-	public void setContas(List<Conta> contas) {
-		this.contas = contas;
-	}
-
+        return true;
+    }
 }

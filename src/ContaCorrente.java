@@ -1,8 +1,12 @@
 
 public class ContaCorrente extends Conta {
 
-	public ContaCorrente(Cliente cliente) {
-		super(cliente);
+	public ContaCorrente() {
+		super();
+	}
+
+	public ContaCorrente(Integer agencia, Integer numero) {
+		super(agencia, numero);
 	}
 
 	@Override
